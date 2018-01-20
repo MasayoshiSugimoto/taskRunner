@@ -41,4 +41,12 @@ sub read {
   return \@processes;
 }
 
+sub start {
+  my ($cmd) = @_;
+  #Launch the process in background
+  if (system("$cmd&") != 0) {
+    $logger->error("Failed to launch process with command: $cmd");
+  }
+}
+
 1;

@@ -33,4 +33,9 @@ sub foreach {
   }
 }
 
+sub size {
+  my ($self) = @_;
+  return scalar(@{$self->{_array}});
+}
+
 1;
