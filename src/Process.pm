@@ -49,7 +49,7 @@ sub read {
   my @processes = ();
   $logger->debug('Reading processes...');
   foreach my $line (@output) {
-    my ($pid, $command) = ($line =~ m/([0-9]+) +[^ ]+ +[^ ]+(.*)/);
+    my ($pid, $command) = ($line =~ m/([0-9]+) +[^ ]+ +[^ ]+ +[^ ]+ +(.*)/);
     $logger->debug($line);
     push(@processes, new Process($pid, $command));
   }
