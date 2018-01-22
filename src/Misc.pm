@@ -4,8 +4,10 @@ use warnings;
 package Misc;
 
 use Logger;
+use Process;
+use List;
 
-my $logger = new Logger('argumentChecker');
+my $logger = new Logger('Misc');
 
 sub checkArguments {
   my ($argumentsRef) = @_;
@@ -23,6 +25,15 @@ sub checkArguments {
 sub checkEmpty {
   my $value = shift;
   $value or die "Empty parameter";
+}
+
+sub startApp {
+  my ($applications, $appName) = @_;
+  foreach my $app ($applications) {
+    if ($app->{application} == $appName) {
+      Process::start($app->{cmd});
+    }
+  }
 }
 
 1;

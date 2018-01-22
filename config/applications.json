@@ -1,0 +1,10 @@
+[
+  {
+    "application": "app1",
+    "cmd": "../tests/app1.sh&"
+  },
+  {
+    "application": "app2",
+    "cmd": "../tests/app2.sh&"
+  }
+]

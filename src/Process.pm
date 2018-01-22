@@ -18,6 +18,16 @@ sub new {
   return $self;
 }
 
+sub pid {
+  my ($self) = @_;
+  return $self->{_pid};
+}
+
+sub command {
+  my ($self) = @_;
+  return $self->{_command};
+}
+
 sub toJSON {
   my ($self) = @_;
   return "{ pid: $self->{_pid}, command: $self->{_command} }";
@@ -26,6 +36,11 @@ sub toJSON {
 sub kill {
   my ($self) = @_;
   kill('KILL', $self->{_pid});
+}
+
+sub pidFilter {
+  my ($pid) = @_;
+  return sub {return shift(@_)->pid() == $pid;};
 }
 
 sub read {
@@ -44,7 +59,7 @@ sub read {
 sub start {
   my ($cmd) = @_;
   #Launch the process in background
-  if (system("$cmd&") != 0) {
+  if (system("$cmd") != 0) {
     $logger->error("Failed to launch process with command: $cmd");
   }
 }
